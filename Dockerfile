@@ -11,10 +11,10 @@ RUN apt-get update && apt-get install -y \
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set root password from env var (set ROOT_PASSWORD in Railway)
-RUN echo 'root:$ROOT_PASSWORD' | chpasswd
+# Hardcode root password (CHANGE THIS AFTER TESTING!)
+RUN echo 'root:12345' | chpasswd
 
-# Expose SSH port (Railway proxies this to your subdomain)
+# Expose SSH port
 EXPOSE 22
 
 # Start SSH daemon and keep container alive
